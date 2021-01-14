@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('H */4 * * 1-5')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,7 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh './mvnw clean package'
+                sh './mvnw clean compile'
             }
 
             post {
